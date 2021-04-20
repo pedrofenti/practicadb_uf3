@@ -1,0 +1,383 @@
+-- MySQL dump 10.18  Distrib 10.3.27-MariaDB, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: pokenti3
+-- ------------------------------------------------------
+-- Server version	10.3.27-MariaDB-0+deb10u1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `bag`
+--
+
+DROP TABLE IF EXISTS `bag`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bag` (
+  `id_bag` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_pokenti` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_bag`),
+  KEY `id_pokenti` (`id_pokenti`),
+  CONSTRAINT `bag_ibfk_1` FOREIGN KEY (`id_pokenti`) REFERENCES `pokentis` (`id_pokenti`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bag`
+--
+
+LOCK TABLES `bag` WRITE;
+/*!40000 ALTER TABLE `bag` DISABLE KEYS */;
+INSERT INTO `bag` VALUES (1,1),(2,8),(3,15),(4,19);
+/*!40000 ALTER TABLE `bag` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `catched`
+--
+
+DROP TABLE IF EXISTS `catched`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `catched` (
+  `id_catched` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_pokenti` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_catched`),
+  KEY `id_pokenti` (`id_pokenti`),
+  CONSTRAINT `catched_ibfk_1` FOREIGN KEY (`id_pokenti`) REFERENCES `pokentis` (`id_pokenti`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `catched`
+--
+
+LOCK TABLES `catched` WRITE;
+/*!40000 ALTER TABLE `catched` DISABLE KEYS */;
+INSERT INTO `catched` VALUES (1,4),(2,7),(5,12),(3,13),(4,20);
+/*!40000 ALTER TABLE `catched` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `current_stats`
+--
+
+DROP TABLE IF EXISTS `current_stats`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `current_stats` (
+  `id_current_stat` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `curr_level` int(11) NOT NULL,
+  `curr_exp` int(11) NOT NULL,
+  `curr_hp` int(11) NOT NULL,
+  `curr_attack` int(11) NOT NULL,
+  `curr_defense` int(11) NOT NULL,
+  `curr_sp_atk` int(11) NOT NULL,
+  `curr_sp_def` int(11) NOT NULL,
+  `curr_speed` int(11) NOT NULL,
+  `id_pokenti` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_current_stat`),
+  KEY `id_pokenti` (`id_pokenti`),
+  CONSTRAINT `current_stats_ibfk_1` FOREIGN KEY (`id_pokenti`) REFERENCES `pokentis` (`id_pokenti`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `current_stats`
+--
+
+LOCK TABLES `current_stats` WRITE;
+/*!40000 ALTER TABLE `current_stats` DISABLE KEYS */;
+INSERT INTO `current_stats` VALUES (1,5,34,41,42,65,15,15,31,1),(2,20,26,6,43,80,8,6,45,2),(3,50,8,18,56,10,10,38,55,3),(4,6,13,2,32,60,35,45,39,4),(5,23,75,61,18,8,15,18,45,5),(6,40,47,54,48,19,18,10,43,6),(7,2,42,41,35,50,6,43,24,7),(8,17,51,73,20,35,10,58,14,8),(9,36,7,81,60,15,15,78,20,9),(10,9,41,30,31,10,20,45,15,10),(11,15,45,10,45,45,25,30,5,11),(12,28,76,45,40,14,30,70,45,12),(13,4,43,35,20,24,20,50,19,13),(14,12,14,25,12,15,2,35,45,14),(15,30,86,10,14,40,40,75,15,15),(16,6,42,5,40,32,32,53,25,16),(17,25,6,20,55,40,40,21,39,17),(18,70,18,50,75,17,14,10,79,18),(19,1,34,16,35,22,25,12,53,19),(20,35,51,11,60,15,40,9,41,20);
+/*!40000 ALTER TABLE `current_stats` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `evolves`
+--
+
+DROP TABLE IF EXISTS `evolves`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `evolves` (
+  `id_evolve` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pre_evolve` varchar(24) NOT NULL,
+  `evolve` varchar(24) NOT NULL,
+  `id_pokenti` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_evolve`),
+  KEY `id_pokenti` (`id_pokenti`),
+  CONSTRAINT `evolves_ibfk_1` FOREIGN KEY (`id_pokenti`) REFERENCES `pokentis` (`id_pokenti`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `evolves`
+--
+
+LOCK TABLES `evolves` WRITE;
+/*!40000 ALTER TABLE `evolves` DISABLE KEYS */;
+INSERT INTO `evolves` VALUES (1,'Huevo','Ivysaur',1),(2,'Bulbasaur','Venusaur',2),(3,'Ivysaur','',3),(4,'Huevo','Charmeleon',4),(5,'Charmander','Charizard',5),(6,'Charmeleon','',6),(7,'Huevo','Wartortle',7),(8,'Squirtle','Blastoise',8),(9,'Wartortle','',9),(10,'Huevo','Metapod',10),(11,'Caterpie','Butterfree',11),(12,'Metapod','',12),(13,'Huevo','Kakuna',13),(14,'Weedle','Beedrill',14),(15,'Kakuna','',15),(16,'Huevo','Pidgeotto',16),(17,'Pidgey','Pidgeot',17),(18,'Pidgeotto','',18),(19,'Huevo','Raticate',19),(20,'Rattata','',20);
+/*!40000 ALTER TABLE `evolves` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `evolves_level`
+--
+
+DROP TABLE IF EXISTS `evolves_level`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `evolves_level` (
+  `id_evolve_level` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_evolve` int(10) unsigned DEFAULT NULL,
+  `id_level` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id_evolve_level`),
+  KEY `id_evolve` (`id_evolve`),
+  KEY `id_level` (`id_level`),
+  CONSTRAINT `evolves_level_ibfk_1` FOREIGN KEY (`id_evolve`) REFERENCES `evolves` (`id_evolve`),
+  CONSTRAINT `evolves_level_ibfk_2` FOREIGN KEY (`id_level`) REFERENCES `levels` (`id_level`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `evolves_level`
+--
+
+LOCK TABLES `evolves_level` WRITE;
+/*!40000 ALTER TABLE `evolves_level` DISABLE KEYS */;
+INSERT INTO `evolves_level` VALUES (1,1,1),(2,2,1),(3,3,1),(4,4,1),(5,5,1),(6,6,1),(7,7,1),(8,8,1),(9,9,1),(10,10,2),(11,11,2),(12,12,2),(13,13,2),(14,14,2),(15,15,2),(16,16,3),(17,17,3),(18,18,3),(19,19,4),(20,20,4);
+/*!40000 ALTER TABLE `evolves_level` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `levels`
+--
+
+DROP TABLE IF EXISTS `levels`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `levels` (
+  `id_level` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `first_evolution_level` int(11) DEFAULT NULL,
+  `second_evolution_level` int(11) DEFAULT NULL,
+  `third_evolution_level` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_level`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `levels`
+--
+
+LOCK TABLES `levels` WRITE;
+/*!40000 ALTER TABLE `levels` DISABLE KEYS */;
+INSERT INTO `levels` VALUES (1,16,32,NULL),(2,7,10,NULL),(3,18,36,NULL),(4,20,NULL,NULL);
+/*!40000 ALTER TABLE `levels` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `poke_atk`
+--
+
+DROP TABLE IF EXISTS `poke_atk`;
+/*!50001 DROP VIEW IF EXISTS `poke_atk`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `poke_atk` (
+  `id_pokenti` tinyint NOT NULL,
+  `name` tinyint NOT NULL,
+  `id_stat` tinyint NOT NULL,
+  `attack` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `poke_evole_level`
+--
+
+DROP TABLE IF EXISTS `poke_evole_level`;
+/*!50001 DROP VIEW IF EXISTS `poke_evole_level`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `poke_evole_level` (
+  `id_pokenti` tinyint NOT NULL,
+  `name` tinyint NOT NULL,
+  `pre_evolve` tinyint NOT NULL,
+  `evolve` tinyint NOT NULL,
+  `id_evolve_level` tinyint NOT NULL,
+  `first_evolution_level` tinyint NOT NULL,
+  `second_evolution_level` tinyint NOT NULL,
+  `third_evolution_level` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `pokentis`
+--
+
+DROP TABLE IF EXISTS `pokentis`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pokentis` (
+  `id_pokenti` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(24) NOT NULL,
+  `japanese_name` varchar(24) DEFAULT NULL,
+  `poke_number` int(11) NOT NULL,
+  PRIMARY KEY (`id_pokenti`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pokentis`
+--
+
+LOCK TABLES `pokentis` WRITE;
+/*!40000 ALTER TABLE `pokentis` DISABLE KEYS */;
+INSERT INTO `pokentis` VALUES (1,'Bulbasaur','フシギダネ',1),(2,'Ivysaur','フシギソウ',2),(3,'Venusaur','フシギバナ',3),(4,'Charmander','ヒトカゲ',4),(5,'Charmaleon','リザード',5),(6,'Charizard','リザードン',6),(7,'Squirtle','ゼニガメ',7),(8,'Wartortle','	カメール',8),(9,'Blastoise','カメックス',9),(10,'Caterpie','キャタピー',10),(11,'Metapod','トランセル',11),(12,'Butterfree','	バタフリー',12),(13,'Weedle','ビードル',13),(14,'Kakuna','コクーン',14),(15,'Beedrill','	スピアー',15),(16,'Pidgey','ポッポ',16),(17,'Pidgeotto','ピジョン',17),(18,'Pidgeot','ピジョット',18),(19,'Rattata','コラッタ',19),(20,'Raticate','ラッタ',20);
+/*!40000 ALTER TABLE `pokentis` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pokentis_types`
+--
+
+DROP TABLE IF EXISTS `pokentis_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pokentis_types` (
+  `id_pokenti_type` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_pokenti` int(10) unsigned NOT NULL,
+  `id_type` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_pokenti_type`),
+  KEY `id_pokenti` (`id_pokenti`),
+  KEY `id_type` (`id_type`),
+  CONSTRAINT `pokentis_types_ibfk_1` FOREIGN KEY (`id_pokenti`) REFERENCES `pokentis` (`id_pokenti`),
+  CONSTRAINT `pokentis_types_ibfk_2` FOREIGN KEY (`id_type`) REFERENCES `types` (`id_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pokentis_types`
+--
+
+LOCK TABLES `pokentis_types` WRITE;
+/*!40000 ALTER TABLE `pokentis_types` DISABLE KEYS */;
+INSERT INTO `pokentis_types` VALUES (1,1,1),(2,2,1),(3,3,1),(4,4,2),(5,5,2),(6,6,3),(7,7,4),(8,8,4),(9,9,4),(10,10,5),(11,11,5),(12,12,6),(13,13,7),(14,14,7),(15,15,7),(16,16,8),(17,17,8),(18,18,8),(19,19,9),(20,20,9);
+/*!40000 ALTER TABLE `pokentis_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `stats`
+--
+
+DROP TABLE IF EXISTS `stats`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `stats` (
+  `id_stat` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `hp` int(11) NOT NULL,
+  `attack` int(11) NOT NULL,
+  `defense` int(11) NOT NULL,
+  `sp_atk` int(11) NOT NULL,
+  `sp_def` int(11) NOT NULL,
+  `speed` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  `id_pokenti` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_stat`),
+  KEY `id_pokenti` (`id_pokenti`),
+  CONSTRAINT `stats_ibfk_1` FOREIGN KEY (`id_pokenti`) REFERENCES `pokentis` (`id_pokenti`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `stats`
+--
+
+LOCK TABLES `stats` WRITE;
+/*!40000 ALTER TABLE `stats` DISABLE KEYS */;
+INSERT INTO `stats` VALUES (1,45,49,49,65,65,45,318,1),(2,60,62,63,80,80,60,405,2),(3,80,82,83,100,100,80,525,3),(4,39,52,43,60,50,65,309,4),(5,58,64,58,80,65,80,405,5),(6,78,84,78,109,85,100,543,6),(7,44,48,65,50,64,43,324,7),(8,59,63,80,65,80,58,405,8),(9,79,83,100,85,105,78,530,9),(10,45,30,35,20,20,45,195,10),(11,50,20,55,25,25,30,205,11),(12,60,45,50,90,80,70,395,12),(13,40,35,30,20,20,50,195,13),(14,45,25,50,25,25,35,205,14),(15,65,90,40,45,80,75,395,15),(16,40,45,40,35,35,56,251,16),(17,63,60,55,50,50,71,349,17),(18,83,80,75,70,70,101,479,18),(19,30,56,35,25,35,72,253,19),(20,55,81,60,50,70,97,413,20);
+/*!40000 ALTER TABLE `stats` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `types`
+--
+
+DROP TABLE IF EXISTS `types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `types` (
+  `id_type` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `primary` varchar(16) DEFAULT NULL,
+  `secondary` varchar(16) DEFAULT NULL,
+  PRIMARY KEY (`id_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `types`
+--
+
+LOCK TABLES `types` WRITE;
+/*!40000 ALTER TABLE `types` DISABLE KEYS */;
+INSERT INTO `types` VALUES (1,'Grass','Poison'),(2,'Fire',NULL),(3,'Fire','Dragon'),(4,'Water',NULL),(5,'Bug',NULL),(6,'Bug','Fliyng'),(7,'Bug','Poison'),(8,'Normal','Flying'),(9,'Normal',NULL);
+/*!40000 ALTER TABLE `types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Final view structure for view `poke_atk`
+--
+
+/*!50001 DROP TABLE IF EXISTS `poke_atk`*/;
+/*!50001 DROP VIEW IF EXISTS `poke_atk`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `poke_atk` AS select `pokentis`.`id_pokenti` AS `id_pokenti`,`pokentis`.`name` AS `name`,`stats`.`id_stat` AS `id_stat`,`stats`.`attack` AS `attack` from (`pokentis` join `stats`) where `pokentis`.`id_pokenti` = `stats`.`id_pokenti` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `poke_evole_level`
+--
+
+/*!50001 DROP TABLE IF EXISTS `poke_evole_level`*/;
+/*!50001 DROP VIEW IF EXISTS `poke_evole_level`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `poke_evole_level` AS select `pokentis`.`id_pokenti` AS `id_pokenti`,`pokentis`.`name` AS `name`,`evolves`.`pre_evolve` AS `pre_evolve`,`evolves`.`evolve` AS `evolve`,`evolves_level`.`id_evolve_level` AS `id_evolve_level`,`levels`.`first_evolution_level` AS `first_evolution_level`,`levels`.`second_evolution_level` AS `second_evolution_level`,`levels`.`third_evolution_level` AS `third_evolution_level` from (((`pokentis` join `evolves`) join `evolves_level`) join `levels`) where `pokentis`.`id_pokenti` = `evolves`.`id_pokenti` and `evolves`.`id_evolve` = `evolves_level`.`id_evolve` and `evolves_level`.`id_level` = `levels`.`id_level` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-04-20 20:05:41

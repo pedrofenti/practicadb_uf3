@@ -10,4 +10,4 @@ GRANT SELECT,INSERT,UPDATE ON pokenti3.* TO 'webuser'@'localhost';
 
 CREATE USER 'backup'@'localhost';
 
-GRANT SELECT,SHOW VIEW,TRIGGER,LOCK TABLES ON pokenti3.* TO 'backup'@'localhost'
+GRANT SELECT,SHOW VIEW,TRIGGER,LOCK TABLES ON pokenti3.* TO 'backup'@'localhost';

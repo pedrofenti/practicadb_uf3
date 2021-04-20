@@ -141,8 +141,8 @@ INSERT INTO stats (hp, attack, defense, sp_atk, sp_def, speed, total, id_pokenti
 
 CREATE TABLE types (
 	id_type INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	`primary` VARCHAR(16) NOT NULL,
-	secondary VARCHAR(16) NOT NULL );
+	`primary` VARCHAR(16),
+	secondary VARCHAR(16) );
 
 INSERT INTO types (`primary`, secondary) VALUES
 	('Grass', 'Poison'),
